@@ -1,0 +1,126 @@
+#include<iostream>
+#include<string>
+using namespace std;
+class stringType {
+private:
+	string str1;
+	string str2;
+public:
+	stringType(string s1 = "", string s2 = "") {
+		str1 = s1;
+		str2 = s2;
+	}
+
+	void setValues(string s1, string s2)
+	{
+		str1 = s1;
+		str2 = s2;
+	}
+	void print()
+	{
+		cout << "First string = " << str1 << endl;
+		cout << "Second string = " << str2 << endl;
+	}
+	int size(string str)
+	{
+		int i = 0; 
+		while (str[i] != '\0')
+		{
+			if (str[i] == ' ')
+				continue;
+			else
+				i++;
+		}
+		return i;
+	}
+	int maxlength()
+	{
+		int maxcount;
+		if (size(str1) > size(str2))
+			maxcount = size(str1);
+		else
+			maxcount = size(str2);
+		return maxcount;
+
+	}
+	int compare(string str1, string str2)
+	{
+		int i = 0;
+		while (str1[i] == str2[i])
+		{
+			i++;
+		}
+		if (str1[i] == '\0' && str2[i] == '\0')
+			return 0;
+		else if (str1[i] > str2[i])
+			return 1;
+		else return -1;
+	}
+	int search_word(string word)
+	{
+		int i = 0, j = 0;
+		while ((str1[j] != '\0') && (word[i] != '\0')) {
+			if (word[i] != str1[j]) {
+				j++;
+				i = 0;
+			}
+			else {
+				i++;
+				j++;
+			}
+		}
+		if (word[i] == '\0')
+			return 1;
+		else
+			return 0;
+	}
+	int search_char(char ch)
+	{
+		bool found = false;
+		int i = 0;
+		while (str1[i] != '\0')
+		{
+			if (str1[i] == ch)
+			{
+				found = true;
+				break;
+			}
+			i++;
+		}
+		if (found == false)
+			return 0;
+		else 
+			return 1;
+	}
+	void copy(string &source, string &destination)
+	{
+		destination = source;
+	}
+	void concatenation(string &str1, string str2)
+	{
+		str1 = str1 + ' ' + str2;
+	}
+};
+int main()
+{
+	string str1 = "How are you?", str2 = "I am fine.";
+	stringType s1;
+	string word;
+	char c;
+	s1.setValues(str1,str2);
+	s1.print();	
+	cout << s1.compare(str1,str2)<< endl;
+	cout << "Enter the word you want to compare.\n";
+	cin >> word;
+	cout << s1.search_word(word) << endl;
+	cout << "Enter the character you want to compare.\n";
+	cin >> c;
+	cout << s1.search_char(c) << endl;
+	s1.concatenation(str1, str2);
+	cout << str1;
+	s1.copy(str1, str2);
+	cout << str1 << endl;
+	cout << s1.maxlength() << endl;
+
+
+}
