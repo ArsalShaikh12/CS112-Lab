@@ -1,0 +1,71 @@
+#include<iostream>
+using namespace std;
+class Parity {
+private:
+	int max;
+	int number;
+	int* list;
+public:
+
+	Parity();
+	void put(int);
+	void delt(int);
+	void print(void);
+	int test(void);
+};
+
+Parity::Parity()
+{
+	max = 1;
+	number = max;
+	list = new int[max];
+}
+void Parity::put(int num)
+{
+
+	max = max + 1;
+	int* temp = new int[max];
+	for (int i = 0; i < number; i++)
+	{
+		temp[i] = list[i];
+	}
+	delete[] list;
+	list = temp;
+	temp[max - 1] = num;
+
+}
+void Parity::delt(int num)
+{
+	max = max - 1;
+	int* temp = new int[max];
+	for (int i = 0; i < number; i++)
+	{
+		temp[i] = list[i];
+	}
+	delete[] list;
+	list = temp;
+	return;
+}
+void Parity::print()
+{
+	for (int i = 0; i < max; i++)
+	{
+		cout << list[i] << " ";
+	}
+}
+int Parity::test()
+{
+	if (max % 2 == 0)
+		return 1;
+	else return 0;
+}
+
+int main()
+{
+	Parity p1;
+	p1.put(5);
+	p1.print();
+	p1.delt(5);
+	p1.print();
+	cout << p1.test();
+}
