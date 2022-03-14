@@ -59,7 +59,7 @@ int Parity::test()
 		return 1;
 	else return 0;
 }
-
+Parity :: ~Parity();
 int main()
 {
 	Parity p1;
