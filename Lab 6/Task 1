@@ -1,0 +1,58 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+class Coordinator;
+class Person {
+	string Comp_Uni;
+public:
+	friend class Coordinator;
+};
+class Coordinator {
+	string Competition;
+	string University;
+public:
+	void setter(Person& p1, Person& p2)
+	{
+		cout << "Enter the Competition and University names.\n";
+		getline(cin, p1.Comp_Uni);
+		cout << "Enter the Competition and University names.\n";
+		getline(cin, p2.Comp_Uni);
+	}
+	void spliting(const Person p1)
+	{
+		int i = p1.Comp_Uni.find(' ');
+		Competition = p1.Comp_Uni.substr(0, i);
+		int j = p1.Comp_Uni.length() - 1;
+		University = p1.Comp_Uni.substr(i + 1, j - i);
+	}
+
+	void is_uni_same(Person p1, Person p2)
+	{
+		string tempuni, tempcomp;
+		int room;
+		spliting(p1);
+		tempuni = University;
+		tempcomp = Competition;
+		spliting(p2);
+		if (University == tempuni)
+		{
+			if (tempcomp.length() > Competition.length())
+				room = tempcomp.length();
+			else
+				room = Competition.length();
+			cout << "Message from the coordinator: Person 1 and Person 2 are roommtes, and the room number is " << room << endl;
+		}
+		else
+			cout << "Message from the coordinator : Person 1 and Person 2 are not roommtes." << endl;
+	}
+
+};
+int main()
+{
+	Coordinator c1;
+	Person p1, p2;
+	c1.setter(p1, p2);
+	c1.is_uni_same(p1, p2);
+	return 0;
+}
