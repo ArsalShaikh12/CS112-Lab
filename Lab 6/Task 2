@@ -1,0 +1,73 @@
+#include<iostream>
+using namespace std;
+class Entry {
+	int ID;
+	string name;
+	string rank;
+	static int count;
+public:
+	void setter()
+	{
+		cout << "Enter the ID\n";
+		cin >> ID;
+		cout << "Enter the name\n";
+		cin >> name;
+		cout << "Enter rank\n";
+		cin >> rank;
+	}
+	bool id_Palindrome()
+	{
+		int sum = 0;
+		int rem;
+		int id2 = ID;
+		while (ID > 0)
+		{
+			rem = ID % 10;
+			sum = (sum * 10) + rem;
+			ID = ID / 10;
+
+		}
+		if (id2 == sum)
+		{
+
+			return 1;
+		}
+		else
+		{
+			count++;
+			return 0;
+		}
+
+	}
+	void get_total()
+	{
+		cout << "The total number of officers entered in the area are " << count << endl;
+	}
+
+};
+int Entry::count = 0;
+int main()
+{
+	Entry e;
+
+	int option;
+	do {
+		cout << "Please enter the option from the menu.\n\n**** MENU ****\n\n1. Enter ID of officers.\n2. Get total number of officers\n3. Exit\n";
+		cin >> option;
+
+		switch (option)
+		{
+		case 1:
+			e.setter();
+			break;
+		case 2:
+			e.get_total();
+			break;
+		}
+		if (!e.id_Palindrome())
+			cout << "The officer is allowed to enter the area.\n";
+		else
+			cout << "The officer is not allowed to enter the area.\n";
+
+	} while (option != 3);
+}
